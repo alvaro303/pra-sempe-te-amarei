@@ -1,284 +1,175 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Minha Garota - Amor da Minha Vida ❤️</title>
-  <meta name="description" content="Um site dedicado ao amor da minha vida, minha garota, com mensagens, música e animações românticas." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pra Minha Garota ❤️</title>
   <style>
-    /* Reset básico */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5e8f7 0%, #d4c1ec 100%);
-      color: #2c2c2c;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 50px 20px 100px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    header {
-      max-width: 700px;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #f8f9fa; /* Fundo neutro */
+      color: #333;
+      overflow: hidden;
       text-align: center;
-      margin-bottom: 40px;
-      animation: fadeIn 1.5s ease forwards;
-      opacity: 0;
     }
-    header h1 {
-      font-size: 3rem;
-      color: #9b2b6b;
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    .container {
+      z-index: 1;
+      padding: 50px 20px;
+      position: relative;
     }
-    main {
+    h1 {
+      font-size: 3em;
+      color: #e60073;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 20px auto;
       max-width: 700px;
-      background: rgba(255 255 255 / 0.85);
-      border-radius: 18px;
-      padding: 35px 45px;
-      box-shadow: 0 14px 40px rgba(155, 43, 107, 0.3);
-      animation: fadeIn 2s ease 1s forwards;
-      opacity: 0;
+      line-height: 1.6;
     }
-    main p {
-      font-size: 1.18rem;
-      color: #3a3a3a;
-      text-align: justify;
-      white-space: pre-line;
-    }
-    /* Botão voltar topo */
-    #topBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #9b2b6b;
+    button {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      margin: 15px;
+      color: white;
+      background-color: #ff66b2;
       border: none;
-      border-radius: 50%;
-      width: 52px;
-      height: 52px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(155, 43, 107, 0.5);
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #e60073;
+    }
+    .hidden {
       display: none;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.9rem;
-      transition: background-color 0.3s ease;
-      z-index: 10;
+      margin-top: 30px;
+      font-size: 1.3em;
+      color: #d63384;
     }
-    #topBtn:hover {
-      background-color: #6f1f4d;
-    }
-    /* Música */
-    .music-control {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      background-color: #9b2b6b;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(155, 43, 107, 0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      transition: background-color 0.3s ease;
-      z-index: 10;
-    }
-    .music-control:hover {
-      background-color: #6f1f4d;
-    }
-    /* Corações animados */
     .hearts {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
-      overflow: visible;
       z-index: 0;
     }
     .heart {
       position: absolute;
-      width: 26px;
-      height: 26px;
-      background: #9b2b6b;
+      width: 30px;
+      height: 30px;
+      background: red;
       transform: rotate(45deg);
-      animation: floatUp linear infinite;
-      opacity: 0.75;
-      filter: drop-shadow(0 0 4px #9b2b6b);
+      animation: floatHeart 8s linear infinite;
+      opacity: 0.8;
     }
     .heart::before,
     .heart::after {
-      content: "";
+      content: '';
       position: absolute;
-      width: 26px;
-      height: 26px;
-      background: #9b2b6b;
+      width: 30px;
+      height: 30px;
+      background: red;
       border-radius: 50%;
     }
-    .heart::before {
-      top: -13px;
-      left: 0;
+    .heart::before { top: -15px; left: 0; }
+    .heart::after { left: -15px; top: 0; }
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
-    .heart::after {
-      left: -13px;
-      top: 0;
+    audio {
+      display: none;
     }
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) rotate(45deg);
-        opacity: 0.75;
-      }
-      100% {
-        transform: translateY(-120vh) rotate(45deg);
-        opacity: 0;
-      }
-    }
-    /* Fade in */
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    /* Responsividade */
-    @media (max-width: 480px) {
-      body {
-        padding: 35px 15px 100px;
-      }
-      header h1 {
-        font-size: 2.4rem;
-      }
-      main {
-        padding: 25px 25px;
-      }
-      main p {
-        font-size: 1rem;
-      }
-      .music-control, #topBtn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.6rem;
-      }
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff66b2;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      color: white;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Oi, minha garota ❤️</h1>
-  </header>
+<audio id="bg-music" loop autoplay>
+  <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_4c6b71df02.mp3?filename=romantic-piano-11249.mp3" type="audio/mpeg" />
+  Seu navegador não suporta áudio.
+</audio>
 
-  <main>
-    <p>
-Minha garota...
+<button class="music-btn" onclick="toggleMusic()" title="Tocar / Pausar">🔊</button>
 
-Às vezes eu fico pensando como eu tive tanta sorte de te encontrar nesse mundo tão grande. Você chegou de um jeito leve, como quem não quer nada, e de repente... virou tudo. Virou meu motivo, minha paz, minha confusão boa, meu riso solto.
+<div class="hearts"></div>
 
-Você me mostrou o que é amar de verdade. Não um amor qualquer, mas aquele amor que cresce com o tempo, que aprende, que cuida, que insiste. E mesmo quando os dias estão nublados, só o teu sorriso clareia tudo.
+<div class="container">
+  <h1>Oi, minha garota ❤️</h1>
+  <p>Essa é só uma pequena surpresa... pra te lembrar do quanto você é importante pra mim.</p>
 
-Eu amo o jeito que você fala, o brilho dos teus olhos quando fala de algo que ama, e até aquele jeitinho bravo que só você tem — que no fundo eu acho lindo também.
+  <button onclick="reveal1()">Clique aqui</button>
+  <div class="hidden" id="msg1">
+    Thuane, você é o amor da minha vida. Meu motivo de sorrir, minha paz, minha inspiração. 💖
+  </div>
 
-Amo cada conversa, cada momento bobo, cada silêncio confortável do teu lado. Amo quando você me olha como se eu fosse tudo, mesmo quando eu me sinto pouco.
+  <button onclick="reveal2()">Mais uma</button>
+  <div class="hidden" id="msg2">
+    Eu olho pra você e só consigo agradecer por tudo que vivemos. Eu quero mais. Muito mais. Com você. 💞
+  </div>
 
-Minha garota, você me dá segurança. Me dá vontade de ser melhor. Me dá fé. Me dá futuro.
+  <button onclick="reveal3()">Última, juro 😄</button>
+  <div class="hidden" id="msg3">
+    Eu te amo, minha garota. Pra sempre. Nunca se esqueça disso. ❤️
+  </div>
+</div>
 
-Se eu pudesse, colocaria num potinho cada risada tua, cada abraço, cada beijo, pra guardar comigo pra sempre.
+<script>
+  // corações
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = `${Math.random() * 100}vw`;
+    heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+    document.querySelector('.hearts').appendChild(heart);
+  }
 
-A verdade é que não tem um só dia que eu não pense em você com amor. Não tem um só momento que eu queira estar longe.
+  // mensagens
+  function reveal1() {
+    document.getElementById('msg1').style.display = 'block';
+  }
+  function reveal2() {
+    document.getElementById('msg2').style.display = 'block';
+  }
+  function reveal3() {
+    document.getElementById('msg3').style.display = 'block';
+  }
 
-E se esse mundo girar mil vezes, eu quero que em cada uma delas, a gente se encontre de novo.
-
-Porque eu não quero só viver com você, minha garota.
-
-Eu quero envelhecer do seu lado.
-
-Eu te amo. De verdade. Com tudo que sou. Com tudo que ainda vou ser.
-
-Pra sempre teu.
-    </p>
-  </main>
-
-  <button id="topBtn" aria-label="Voltar ao topo" title="Voltar ao topo">⬆️</button>
-
-  <button class="music-control" aria-label="Tocar / pausar música" title="Tocar / pausar música" id="musicBtn">🎵</button>
-
-  <div class="hearts"></div>
-
-  <audio id="bg-music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_4c6b71df02.mp3?filename=romantic-piano-11249.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
-  </audio>
-
-  <script>
-    // Criar corações animados com posições aleatórias e velocidades variadas
-    const heartsContainer = document.querySelector('.hearts');
-    const heartCount = 30;
-
-    for(let i = 0; i < heartCount; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = `${Math.random() * 100}vw`;
-      heart.style.top = `${100 + Math.random() * 50}vh`; // Começa um pouco abaixo da tela
-      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
-      heart.style.animationDelay = `${Math.random() * 10}s`;
-      heartsContainer.appendChild(heart);
+  // música
+  const music = document.getElementById('bg-music');
+  let playing = true;
+  function toggleMusic() {
+    if (playing) {
+      music.pause();
+      playing = false;
+    } else {
+      music.play();
+      playing = true;
     }
+  }
+</script>
 
-    // Música - play/pause control
-    const music = document.getElementById('bg-music');
-    const musicBtn = document.getElementById('musicBtn');
-    let isPlaying = false;
-
-    function toggleMusic() {
-      if(isPlaying) {
-        music.pause();
-        musicBtn.textContent = '🎵';
-      } else {
-        music.play();
-        musicBtn.textContent = '🔈';
-      }
-      isPlaying = !isPlaying;
-    }
-
-    musicBtn.addEventListener('click', toggleMusic);
-
-    // Iniciar música automaticamente se permitido (não bloqueado pelo navegador)
-    window.addEventListener('load', () => {
-      music.play().then(() => {
-        isPlaying = true;
-        musicBtn.textContent = '🔈';
-      }).catch(() => {
-        // Autoplay bloqueado, espera clique do usuário
-        isPlaying = false;
-        musicBtn.textContent = '🎵';
-      });
-    });
-
-    // Botão voltar ao topo
-    const topBtn = document.getElementById('topBtn');
-
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 300) {
-        topBtn.style.display = 'flex';
-      } else {
-        topBtn.style.display = 'none';
-      }
-    });
-
-    topBtn.addEventListener('click', () => {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    });
-  </script>
 </body>
 </html>
