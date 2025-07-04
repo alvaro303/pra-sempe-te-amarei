@@ -143,3 +143,141 @@
       }
       100% {
         transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+    /* Fade in */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    /* Responsividade */
+    @media (max-width: 480px) {
+      body {
+        padding: 30px 10px 80px;
+      }
+      header h1 {
+        font-size: 2.4rem;
+      }
+      main {
+        padding: 20px;
+      }
+      main p {
+        font-size: 1rem;
+      }
+      .music-control, #topBtn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Oi, minha garota ❤️</h1>
+  </header>
+
+  <main>
+    <p>
+Minha garota...
+
+Às vezes eu fico pensando como eu tive tanta sorte de te encontrar nesse mundo tão grande. Você chegou de um jeito leve, como quem não quer nada, e de repente... virou tudo. Virou meu motivo, minha paz, minha confusão boa, meu riso solto.
+
+Você me mostrou o que é amar de verdade. Não um amor qualquer, mas aquele amor que cresce com o tempo, que aprende, que cuida, que insiste. E mesmo quando os dias estão nublados, só o teu sorriso clareia tudo.
+
+Eu amo o jeito que você fala, o brilho dos teus olhos quando fala de algo que ama, e até aquele jeitinho bravo que só você tem — que no fundo eu acho lindo também.
+
+Amo cada conversa, cada momento bobo, cada silêncio confortável do teu lado. Amo quando você me olha como se eu fosse tudo, mesmo quando eu me sinto pouco.
+
+Minha garota, você me dá segurança. Me dá vontade de ser melhor. Me dá fé. Me dá futuro.
+
+Se eu pudesse, colocaria num potinho cada risada tua, cada abraço, cada beijo, pra guardar comigo pra sempre.
+
+A verdade é que não tem um só dia que eu não pense em você com amor. Não tem um só momento que eu queira estar longe.
+
+E se esse mundo girar mil vezes, eu quero que em cada uma delas, a gente se encontre de novo.
+
+Porque eu não quero só viver com você, minha garota.
+
+Eu quero envelhecer do seu lado.
+
+Eu te amo. De verdade. Com tudo que sou. Com tudo que ainda vou ser.
+
+Pra sempre teu.
+    </p>
+  </main>
+
+  <button id="topBtn" aria-label="Voltar ao topo" title="Voltar ao topo">⬆️</button>
+
+  <button class="music-control" aria-label="Tocar / pausar música" title="Tocar / pausar música" id="musicBtn">🎵</button>
+
+  <div class="hearts"></div>
+
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_4c6b71df02.mp3?filename=romantic-piano-11249.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <script>
+    // Criar corações animados com posições aleatórias e velocidades variadas
+    const heartsContainer = document.querySelector('.hearts');
+    const heartCount = 30;
+
+    for(let i = 0; i < heartCount; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.top = `${100 + Math.random() * 50}vh`; // Começa um pouco abaixo da tela
+      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+      heart.style.animationDelay = `${Math.random() * 10}s`;
+      heartsContainer.appendChild(heart);
+    }
+
+    // Música - play/pause control
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('musicBtn');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if(isPlaying) {
+        music.pause();
+        musicBtn.textContent = '🎵';
+      } else {
+        music.play();
+        musicBtn.textContent = '🔈';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    musicBtn.addEventListener('click', toggleMusic);
+
+    // Iniciar música automaticamente se permitido (não bloqueado pelo navegador)
+    window.addEventListener('load', () => {
+      music.play().then(() => {
+        isPlaying = true;
+        musicBtn.textContent = '🔈';
+      }).catch(() => {
+        // Autoplay bloqueado, espera clique do usuário
+        isPlaying = false;
+        musicBtn.textContent = '🎵';
+      });
+    });
+
+    // Botão voltar ao topo
+    const topBtn = document.getElementById('topBtn');
+
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300) {
+        topBtn.style.display = 'flex';
+      } else {
+        topBtn.style.display = 'none';
+      }
+    });
+
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  </script>
+</body>
+</html>
