@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minha Garota - Amor da Minha Vida ❤️</title>
+  <meta name="description" content="Um site dedicado ao amor da minha vida, minha garota, com mensagens, música e animações românticas." />
+  <style>
+    /* Reset simples */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #f0e8f8, #fff);
+      color: #3a3a3a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 80px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      max-width: 700px;
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+    }
+    header h1 {
+      font-size: 3.2rem;
+      color: #e91e63;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    main {
+      max-width: 700px;
+      background: rgba(255 255 255 / 0.9);
+      border-radius: 15px;
+      padding: 30px 40px;
+      box-shadow: 0 12px 30px rgba(233, 30, 99, 0.25);
+      animation: fadeIn 2s ease 1s forwards;
+      opacity: 0;
+    }
+    main p {
+      font-size: 1.15rem;
+      color: #555;
+      text-align: justify;
+      white-space: pre-line;
+    }
+    /* Botão voltar topo */
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #e91e63;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+    #topBtn:hover {
+      background-color: #b0003a;
+    }
+    /* Música */
+    .music-control {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background-color: #e91e63;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.9rem;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+    .music-control:hover {
+      background-color: #b0003a;
+    }
+    /* Corações animados */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 0;
+    }
+    .heart {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: #e91e63;
+      transform: rotate(45deg);
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 3px #e91e63);
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: #e91e63;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -12px;
+      left: 0;
+    }
+    .heart::after {
+      left: -12px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
